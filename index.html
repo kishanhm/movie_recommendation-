@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CineMatch — Smart Movie Recommendation System</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<div class="film-strip"></div>
+ 
+<div class="page-wrapper">
+ 
+  <nav>
+    <div class="logo">Cine<span>Match</span></div>
+    <div class="nav-stats">
+      <div class="nav-stat"><div class="nav-stat-num" id="ns-catalog">30</div><div class="nav-stat-lbl">Films</div></div>
+      <div class="nav-stat"><div class="nav-stat-num" id="ns-selected">0</div><div class="nav-stat-lbl">Selected</div></div>
+      <div class="nav-stat"><div class="nav-stat-num" id="ns-recs">0</div><div class="nav-stat-lbl">Matched</div></div>
+    </div>
+  </nav>
+ 
+  <section class="hero">
+    <div class="hero-eyebrow">Content-Based Filtering · Cosine Similarity</div>
+    <h1>Discover films<br>you'll <em>love</em></h1>
+    <p class="hero-sub">An intelligent recommendation engine that learns your taste and surfaces movies tailored precisely to you — powered by AI and ML.</p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="document.getElementById('app').scrollIntoView({behavior:'smooth'})">Start Exploring &rarr;</button>
+      <button class="btn-ghost" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">How it works</button>
+    </div>
+    <div class="algo-badge">
+      <div class="badge-pill"><div class="badge-dot"></div>Content-based filtering</div>
+      <div class="badge-pill"><div class="badge-dot gold"></div>TF-IDF vectors</div>
+      <div class="badge-pill"><div class="badge-dot blue"></div>Cosine similarity</div>
+    </div>
+  </section>
+ 
+  <section class="app-section" id="app">
+    <div class="section-header">
+      <div class="section-label">Step 01</div>
+      <div class="section-title">Select movies you enjoy</div>
+    </div>
+    <div class="search-container">
+      <div class="search-wrap">
+        <span class="search-icon">&#128269;</span>
+        <input class="search-input" id="search-input" type="text" placeholder="Search by title, genre, or keyword&hellip;" />
+      </div>
+      <button class="search-btn" onclick="runSearch()">Search</button>
+      <button class="clear-btn" onclick="clearAll()">Clear all</button>
+    </div>
+    <div class="genre-row" id="genre-row"></div>
+    <div class="movie-grid" id="movie-grid"></div>
+ 
+    <div class="section-header" style="border-top: 1px solid var(--border); padding-top: 3rem;">
+      <div class="section-label">Step 02</div>
+      <div class="section-title">Your recommendations</div>
+    </div>
+    <div class="rec-header">
+      <div></div>
+      <div class="algo-pill"><div class="algo-dot"></div> Live &middot; cosine similarity engine</div>
+    </div>
+    <div class="rec-list" id="rec-list">
+      <div class="empty-state">
+        <div class="empty-icon">&#127916;</div>
+        <div class="empty-text">Select one or more movies above and watch the recommendations appear instantly</div>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="how-section" id="how">
+    <div class="how-inner">
+      <div class="section-header">
+        <div class="section-label">The Algorithm</div>
+        <div class="section-title">How CineMatch works</div>
+      </div>
+      <div class="how-grid">
+        <div class="how-card">
+          <div class="how-num">01</div>
+          <div class="how-title">Feature extraction</div>
+          <div class="how-desc">Each movie is converted into a feature vector using its genres (weight 2&times;) and keywords (weight 1&times;), forming a rich representation in high-dimensional space.</div>
+        </div>
+        <div class="how-card">
+          <div class="how-num">02</div>
+          <div class="how-title">Preference modelling</div>
+          <div class="how-desc">Your selected movies are merged into a single user preference vector by summing their feature vectors — capturing the essence of your taste.</div>
+        </div>
+        <div class="how-card">
+          <div class="how-num">03</div>
+          <div class="how-title">Cosine similarity</div>
+          <div class="how-desc">We compute similarity(A,B) = (A&middot;B)/(|A|&times;|B|) between your vector and every candidate film. Values near 1 = near-perfect match.</div>
+        </div>
+        <div class="how-card">
+          <div class="how-num">04</div>
+          <div class="how-title">Ranked results</div>
+          <div class="how-desc">Movies are sorted by score, filtered to exclude your picks, and the top 8 are surfaced with match percentages and explanatory tags.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <footer>
+    <strong>CineMatch</strong> &mdash; Smart Movie Recommendation System &nbsp;&middot;&nbsp; AI &amp; ML Mini Project<br>
+    <span style="font-size:11px;margin-top:6px;display:block;">Built with Content-Based Filtering &middot; TF-IDF Vectors &middot; Cosine Similarity</span>
+  </footer>
+ 
+</div>
+ 
+<script src="app.js"></script>
+</body>
+</html>
+ 
